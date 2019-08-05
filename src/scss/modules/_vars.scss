@@ -1,0 +1,17 @@
+$base : #F7F7F7;
+$light_gray: #DCDCDC;
+$darken : darken(#F7F7F7 , 30%);
+$back: darken(#F7F7F7, 40%);
+$light_green: #90D28B;
+$normal_green: #69D388;
+$dark_orange: #D58048;
+$normal_orange: #FE7B2B;
+
+$grid-breakpoints: (
+  xs: 0,
+  ss: 480px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;

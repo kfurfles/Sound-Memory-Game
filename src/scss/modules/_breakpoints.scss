@@ -1,0 +1,26 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+
+// Min width
+// @include media-breakpoint-up(sm) {
+//     // Styles
+// }
+// Compiled:
+//   @media (min-width: 544px) {}
+
+
+// Max width
+// @include media-breakpoint-up(sm) {
+//     Styles
+// }
+// Compiled:
+// @media (min-width: 544px) {}
+
+
+// Min and max width
+// @include media-breakpoint-between(sm, md) {
+//     your code
+// }
+// Compiled:
+// @media (min-width: 576px) and (max-width: 992px) {}

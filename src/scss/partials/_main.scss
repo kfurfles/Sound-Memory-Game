@@ -1,0 +1,23 @@
+.main {
+    padding: 15px;
+}
+
+.card{
+    padding: 25px;
+    border-width: 2px !important;
+    border-radius: 10px !important;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover,&.playing{
+        svg{
+            transform: scale(1.2);
+        }
+    }
+    svg{
+        width: 50px;
+        margin: 0 auto;
+        display: block;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1) 225ms all;
+    }
+}

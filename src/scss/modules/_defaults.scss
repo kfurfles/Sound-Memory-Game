@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+html {
+  font-size: 14px;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #606060;
+  transition: all .4s .3s ease-in;
+  line-height: 1;
+  font-weight: 500;
+  overflow-x: hidden;
+  position: relative;
+  z-index: -1;
+}
+p{
+  line-height: 24px;
+}
+
+ul{
+  padding-left: 0;
+  list-style: none;
+}
+
