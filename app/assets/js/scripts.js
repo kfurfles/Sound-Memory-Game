@@ -1,6 +1,10 @@
 (function ($, window, document, undefined) {
   'use strict';
   $(function () {
-    Grid.start()
+    (async () =>{
+      Config.init();
+      await Game.init();
+      Grid.init();
+    })()
   });
 })(jQuery, window, document);

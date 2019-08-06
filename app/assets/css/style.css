@@ -543,6 +543,45 @@ textarea {
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 225ms all;
 }
 
+.modal-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.97);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: ease-in-out 500ms all;
+}
+
+.modal-wave img {
+  position: relative;
+  z-index: 1001;
+}
+
+.modal-wave.active {
+  pointer-events: fill;
+  opacity: 1;
+  visibility: visible;
+}
+
+.game .card {
+  padding: 0;
+}
+
+.game .card button {
+  padding: 25px;
+}
+
 .content {
   padding-top: 59px;
 }
