@@ -662,10 +662,6 @@ textarea {
   content: '2';
 }
 
-.content {
-  padding-top: 59px;
-}
-
 @font-face {
   font-family: 'Font-Name';
   src: url("../fonts/font-name.eot");

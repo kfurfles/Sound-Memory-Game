@@ -3,6 +3,7 @@ var Config = {
     methods:{
         defaultDifficulty: 'EASY',
         difficult: getLocalStorage('difficulty'),
+        items: parseInt(location.hash.replace(`#`,``)),
         initilizeConfig(){
             setLocalStoage('sounds', this.shuffleSounds())
         },
@@ -21,18 +22,26 @@ var Config = {
             }
         },
         soundsList(){
-            return [
-                'Alarm01.wav',
-                'Alarm02.wav',
-                'Alarm03.wav',
-                'Alarm04.wav',
-                'Alarm05.wav',
-                'Alarm06.wav',
-                'Alarm07.wav',
-                'Alarm09.wav',
-                'Alarm10.wav',
-                'sound-03.mp3'
+            var arr = [
+                'atabaque.mp3',
+                'berimbau.mp3',
+                'berrante.mp3',
+                'pandeiro.mp3',
+                'sanfona.mp3',
+                'sinos.mp3',
+                'torelli.mp3',
+                'viola.mp3'
             ]
+
+            if (this.items) {
+                if (this.items > arr.length) {
+                    arr = arr.slice(arr.length)
+                }
+                arr = arr.slice(arr.length - this.items)
+                return arr 
+            } else {
+                return arr
+            }
         },
         shuffleSounds(){
             return _.shuffle(this.duplicateSounds())
