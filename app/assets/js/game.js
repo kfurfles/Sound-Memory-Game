@@ -2,6 +2,12 @@
 var Game = {
     audioOne: null,
     audioTwo: null,
+    playCongratzSound(cb) {
+        var el = document.querySelector('.congratz-sounds')
+        Game.methods.music(el,function(){
+            cb()
+        })
+    },
     methods:{
         container: $(`.cards`),
         async setCardSounds(){
@@ -17,34 +23,83 @@ var Game = {
             const { play }  = Interface
             Interface.createElement(play, sound)
             .then((elementoCard) =>{
-                    this.container.append(elementoCard)
+                this.container.append(elementoCard)
             })
         },
-        playMusic(button){
-            console.log(button)   
-            this.toogleOverlay()
-            var audio = button.querySelector('audio')
+        music(audio,cb){
             audio.currentTime = 0
             audio.play()
-            this.endAudio(audio)
+            this.endAudio(audio,cb)
         },
-        endAudio(audio){
-            audio.onended = (el) => {
-                this.toogleOverlay()
-                console.log(`audio : ${audio} terminou`)
+        endAudio(audio,cb){
+            return audio.onended = (el) => {
+                console.log(`end music`)
+                return cb()
             }
         },
+        playMusic(card,cb){
+            this.toogleOverlay()
+            var audio = card.querySelector('audio')
+            Game.methods.music(audio,() =>{
+                this.toogleOverlay()
+                cb()
+            })
+        },
         bindEvents(){
-            var buttonCards = $(`.card-button`)
-            var playMusic = this.playMusic.bind(this) 
+            var buttonCards = $(`.card`)
+            var playMusic = this.playMusic.bind(this)
+            var setAudioMusic = this.setAudioMusic.bind(this)
+
             buttonCards.map((i,el) =>{
-                $(el).click(function(e){
-                    playMusic(this)
+                $(el).click((e) =>{
+                    setAudioMusic($(e.currentTarget))
+                    playMusic(e.currentTarget, () =>{
+                        this.equalCard()
+                    })
                 })
             })
         },
+        async setAudioMusic($card){
+            if (!Game.audioOne) {
+                Game.audioOne  = $card;
+                $card.addClass(`active one`)
+                return 
+            }
+            if (!Game.audioTwo) {
+                Game.audioTwo = $card;
+                $card.addClass(`active two`)
+                return 
+            }
+        },
+        resetAudioMusic(){
+            Game.audioOne.removeClass(`active one`)
+            Game.audioTwo.removeClass(`active two`)
+            Game.audioOne = null
+            Game.audioTwo = null
+        },
         toogleOverlay(){
             $('.modal-wave').toggleClass('active')
+        },
+        equalCard(){
+            return new Promise((resolve, reject) =>{
+                var { audioOne, audioTwo } = Game
+                if (audioOne && audioTwo) {
+                    var srcOne = audioOne.find(`audio`).get(0).src
+                    var srcTwo = audioTwo.find(`audio`).get(0).src
+                
+                    if (srcOne === srcTwo) {
+                        Game.playCongratzSound(() =>{
+                            audioOne.remove()
+                            audioTwo.remove()
+                            this.resetAudioMusic()
+                            Grid.init()
+                            resolve()
+                        })
+                    } else {
+                        this.resetAudioMusic()
+                    }
+                }
+            })
         }
     },
     async init(){

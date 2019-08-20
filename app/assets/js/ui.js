@@ -46,10 +46,17 @@ var Interface = {
         var tempEl = document.createElement('div')
         tempEl.innerHTML = `
         <div class="card">
-            <button class="card-button">    
-                <audio src="assets/sounds/${soundName}"></audio>
-                ${icon}
-            </button>
+            <div class="wrapper">
+                <div class="front">
+                    <button class="card-button">
+                        <audio src="assets/sounds/${soundName}"></audio>
+                        ${icon}
+                    </button>
+                </div>
+                <div class="back">
+                    <span></span>
+                </div>
+            </div>
         </div>
         ` 
         return tempEl.querySelector('.card')
