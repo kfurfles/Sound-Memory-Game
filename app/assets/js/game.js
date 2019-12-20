@@ -5,7 +5,8 @@ var Game = {
     playCongratzSound(cb) {
         var el = document.querySelector('.congratz-sounds')
         Game.methods.music(el,function(){
-            cb()
+			cb()
+
         })
     },
     methods:{
@@ -32,8 +33,7 @@ var Game = {
             this.endAudio(audio,cb)
         },
         endAudio(audio,cb){
-            return audio.onended = (el) => {
-                console.log(`end music`)
+            return audio.onended = () => {
                 return cb()
             }
         },
@@ -54,7 +54,15 @@ var Game = {
                 $(el).click((e) =>{
                     setAudioMusic($(e.currentTarget))
                     playMusic(e.currentTarget, () =>{
-                        this.equalCard()
+						this.equalCard().then(({audioOne,audioTwo, isEndGame}) =>{
+							if(isEndGame){
+								this.showEndGameScreen()
+							} else {
+								audioOne.remove()
+								audioTwo.remove()
+								Grid.init()
+							}
+						})
                     })
                 })
             })
@@ -62,17 +70,17 @@ var Game = {
         async setAudioMusic($card){
             if (!Game.audioOne) {
                 Game.audioOne  = $card;
-                $card.addClass(`active one`)
-                return 
+                $card.addClass(`active one non-click`)
+                return
             }
             if (!Game.audioTwo) {
                 Game.audioTwo = $card;
                 $card.addClass(`active two`)
-                return 
+                return
             }
         },
         resetAudioMusic(){
-            Game.audioOne.removeClass(`active one`)
+            Game.audioOne.removeClass(`active one non-click`)
             Game.audioTwo.removeClass(`active two`)
             Game.audioOne = null
             Game.audioTwo = null
@@ -86,21 +94,28 @@ var Game = {
                 if (audioOne && audioTwo) {
                     var srcOne = audioOne.find(`audio`).get(0).src
                     var srcTwo = audioTwo.find(`audio`).get(0).src
-                
+
                     if (srcOne === srcTwo) {
                         Game.playCongratzSound(() =>{
-                            audioOne.remove()
-                            audioTwo.remove()
                             this.resetAudioMusic()
-                            Grid.init()
-                            resolve()
+                            resolve({
+								audioOne,
+								audioTwo,
+								isEndGame: this.isEndGame()
+							})
                         })
                     } else {
                         this.resetAudioMusic()
                     }
                 }
             })
-        }
+		},
+		isEndGame(){
+			return this.container.find('.card').length == 2
+		},
+		showEndGameScreen(){
+			$('.modal-congratz').addClass('active')
+		}
     },
     async init(){
         await this.methods.setCardSounds()

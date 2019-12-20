@@ -1,0 +1,71 @@
+.main {
+  padding: 15px;
+}
+.card {
+  padding: 25px;
+  border-width: 2px !important;
+  border-radius: 10px !important;
+  cursor: pointer;
+  user-select: none;
+}
+.card:hover svg,
+.card.playing svg {
+  transform: scale(1.2);
+}
+.card svg {
+  width: 50px;
+  margin: 0 auto;
+  display: block;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 225ms all;
+}
+.modal-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: ease-in-out 500ms all;
+}
+.modal-wave img {
+  position: relative;
+  z-index: 1001;
+}
+.modal-wave.active {
+  pointer-events: fill;
+  opacity: 1;
+  visibility: visible;
+}
+.modal-congratz {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.97);
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: ease-in-out 500ms all;
+  color: #fff;
+}
+.modal-congratz img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.modal-congratz.active {
+  opacity: 1;
+  visibility: visible;
+}

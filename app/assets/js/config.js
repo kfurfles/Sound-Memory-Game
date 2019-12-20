@@ -25,12 +25,12 @@ var Config = {
             var arr = [
                 'atabaque.mp3',
                 'berimbau.mp3',
-                'berrante.mp3',
-                'pandeiro.mp3',
-                'sanfona.mp3',
-                'sinos.mp3',
-                'torelli.mp3',
-                'viola.mp3'
+                // 'berrante.mp3',
+                // 'pandeiro.mp3',
+                // 'sanfona.mp3',
+                // 'sinos.mp3',
+                // 'torelli.mp3',
+                // 'viola.mp3'
             ]
 
             if (this.items) {
@@ -38,7 +38,7 @@ var Config = {
                     arr = arr.slice(arr.length)
                 }
                 arr = arr.slice(arr.length - this.items)
-                return arr 
+                return arr
             } else {
                 return arr
             }

@@ -7,7 +7,7 @@
         width: 150px;
         height: 150px;
         overflow: hidden;
-       
+
         button{
             padding: 25px;
             background: inherit;
@@ -15,7 +15,7 @@
             height: 100%;
             width: 100%;
         }
-        
+
         .wrapper{
             position:relative;
             width: 100%;
@@ -69,22 +69,25 @@
 
                     span:after{
                         background: #17a2b8;
-                        content: '1'; 
-                    }
-                }
-            }
-            
-            &.two{
-                .back{
-                    background:#673AB7;
-                    
-                    span:after{
-                        background: #2f1264; 
-                        content: '2'; 
+                        content: '1';
                     }
                 }
             }
 
+            &.two{
+                .back{
+                    background:#673AB7;
+
+                    span:after{
+                        background: #2f1264;
+                        content: '2';
+                    }
+                }
+            }
+
+			&.non-click{
+				pointer-events: none;
+			}
 
         }
     }

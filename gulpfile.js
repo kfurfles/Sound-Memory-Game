@@ -28,24 +28,6 @@ gulp.task('css', function () {
     .pipe(browserSync.reload({stream:true}));
 });
 
-gulp.task('js',function(){
-  gulp.src([
-      'src/js/scripts.js'
-    ])
-    .pipe(sourcemaps.init())
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
-    .pipe(header(banner, { package : package }))
-    .pipe(gulp.dest('app/assets/js'))
-    .pipe(uglify())
-    .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
-    .pipe(header(banner, { package : package }))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('app/assets/js'))
-    .pipe(browserSync.reload({stream:true, once: true}));
-});
-
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
         server: {
@@ -59,7 +41,6 @@ gulp.task('bs-reload', function () {
 
 gulp.task('default', ['css', 'browser-sync'], function () {
     gulp.watch("src/scss/**/*.scss", ['css','bs-reload']);
-    // gulp.watch("src/js/*.js", ['js','bs-reload']);
     gulp.watch("app/*.html", ['bs-reload']);
 });
 
