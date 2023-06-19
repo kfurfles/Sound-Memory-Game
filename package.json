@@ -21,7 +21,7 @@
     "gulp-sourcemaps": "1.12.1",
     "gulp-uglify": "1.5.4",
     "gulp-util": "3.0.8",
-    "jshint": "2.10.2"
+    "jshint": "2.13.6"
   },
   "dependencies": {
     "bootstrap": "4.3.1",
